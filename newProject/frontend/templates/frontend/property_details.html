@@ -1,0 +1,296 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Details{% endblock %}
+{% block content %}
+<section>
+  <div class="allProperties">
+    <div class="inner">
+      <div class="top"></div>
+
+      <div class="propertDetails">
+        <div class="container">
+          <div
+            class="propertyDetaisTop d-flex align-items-center justify-content-between property-title-price-wrap"
+          >
+            <div class="page-title">
+              <h1 class="p-0 m-0">{{ property.property_map_address }}</h1>
+              <address class="item-address">
+                <i class="fa fa-map-marker mr-1"></i>
+                <!-- 2301 West Cantey Street, Fort Worth, TX, USA -->
+                 {{ property.property_map_address }}, {{ property.city }}, {{ property.administrative_area_level_1 }}, {{ property.country }} - {{ property.zip_code }}
+
+              </address>
+            </div>
+            <!-- page-title -->
+            <div class="item-price-wrap hide-on-list">
+              <h4 class="item-price">$ {{ property.prop_price }}</h4>
+            </div>
+          </div>
+
+          <!-- <div class="hero-image">
+            <img
+              class="img-fluid"
+              src="https://purplehousing.com/wp-content/uploads/2025/11/2800-Wayside-Rendering-4-1170x785.jpg"
+              alt=""
+              title="2800 Wayside Rendering"
+            />
+          </div> -->
+          <div class="hero-image">
+    {% if property.gallery_images %}
+        <img
+            class="img-fluid w-100"
+            src="{{ MEDIA_URL }}{{ property.gallery_images.0 }}"
+            alt="{{ property.prop_title }}"
+            title="{{ property.prop_title }}"
+        />
+    {% else %}
+        <img
+            class="img-fluid"
+            src="{% static 'images/default-property.jpg' %}"
+            alt="No Image Available"
+            title="No Image Available"
+        />
+    {% endif %}
+</div>
+
+          <div class="row">
+            <div class="col-md-8">
+              <div
+                class="property-overview-wrap property-section-wrap"
+                id="property-overview-wrap"
+              >
+                <div class="block-wrap p-3">
+                  <div
+                    class="block-title-wrap d-flex justify-content-between align-items-center"
+                  >
+                    <h2>Overview</h2>
+                  </div>
+
+                  <div class="d-flex property-overview-data py-3">
+                    <ul class="item-amenities">
+                      <li class="h-area" id="h_area">
+                        <span id="uperwa">{{ property.prop_beds }}</span>
+                        <p id="nono">{{ property.prop_baths }}</p>
+                      </li>
+                      <li class="h-area" id="h_area">
+                        <span id="uperwa">{{ property.prop_year_built }}</span>
+                        <p id="nono">{{ property.prop_size }}</p>
+                      </li>
+                      <li class="h-area" id="h_area">
+                        <span id="uperwa">${{property.prop_price}}</span>
+                        <p id="nono">{{property.status}}</p>
+                      </li>
+                      <li class="h-area" id="h_area">
+                        <span id="uperwa">{{property.created_at|date:"F d, Y"}}</span>
+                        <p id="nono">AVAILABLE</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="property-description-wrap property-section-wrap"
+                id="property-description-wrap"
+              >
+                <div class="block-wrap p-3">
+                  <div class="block-title-wrap">
+                    <h2>Description</h2>
+                  </div>
+                  <div class="block-content-wrap pt-3">
+                    <p>
+                      {{property.prop_des}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="property-features-wrap property-section-wrap mt-4 p-3"
+                id="property-features-wrap"
+              >
+                <div class="block-wrap">
+                  <div
+                    class="block-title-wrap d-flex justify-content-between align-items-center"
+                  >
+                    <h2>Features</h2>
+                  </div>
+                  <!-- block-title-wrap -->
+                  <div class="block-content-wrap">
+                    <ul class="list-3-cols list-unstyled">
+                      <!-- <li>
+                        <i class="fa fa-check-circle me-2"></i
+                        ><a
+                          href="https://purplehousing.com/feature/alarm-monitoring-services/"
+                          >Alarm Monitoring Services</a
+                        >
+                      </li>
+                      <li>
+                        <i class="fa fa-check-circle me-2"></i
+                        ><a href="https://purplehousing.com/feature/balcony/"
+                          >Balcony</a
+                        >
+                      </li>
+                      <li>
+                        <i class="fa fa-check-circle me-2"></i
+                        ><a
+                          href="https://purplehousing.com/feature/central-a-c/"
+                          >Central A/C</a
+                        >
+                      </li>
+                      <li>
+                        <i class="fa fa-check-circle me-2"></i
+                        ><a href="https://purplehousing.com/feature/garage/"
+                          >Garage</a
+                        >
+                      </li>
+                      <li>
+                        <i class="fa fa-check-circle me-2"></i
+                        ><a
+                          href="https://purplehousing.com/feature/granite-countertops/"
+                          >Granite Countertops</a
+                        >
+                      </li>
+                      <li>
+                        <i class="fa fa-check-circle me-2"></i
+                        ><a href="https://purplehousing.com/feature/lawn-care/"
+                          >Lawn Care</a
+                        >
+                      </li>
+                      <li>
+                        <i class="fa fa-check-circle me-2"></i
+                        ><a
+                          href="https://purplehousing.com/feature/new-construction/"
+                          >New Construction</a
+                        >
+                      </li>
+                      <li>
+                        <i class="fa fa-check-circle me-2"></i
+                        ><a
+                          href="https://purplehousing.com/feature/stainless-steel-appliances/"
+                          >Stainless Steel Appliances</a
+                        >
+                      </li>
+                      <li>
+                        <i class="fa fa-check-circle me-2"></i
+                        ><a
+                          href="https://purplehousing.com/feature/walking-distance/"
+                          >Walking Distance</a
+                        >
+                      </li>
+                      <li>
+                        <i class="fa fa-check-circle me-2"></i
+                        ><a
+                          href="https://purplehousing.com/feature/washer-dryer/"
+                          >Washer &amp; Dryer</a
+                        >
+                      </li> -->
+                       {% for feature in property.prop_features %}
+  <li>
+    <i class="fa fa-check-circle me-2"></i>
+    <a href="#">{{ feature }}</a>
+  </li>
+  {% empty %}
+  <li>No features available.</li>
+  {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="property-floor-plans-wrap property-section-wrap mt-4 p-3 d-none"
+                id="property-floor-plans-wrap"
+              >
+                <div class="block-wrap">
+                  <div
+                    class="block-title-wrap d-flex justify-content-between align-items-center"
+                  >
+                    <h2>Floor Plan</h2>
+                  </div>
+
+                  <div class="block-content-wrap">
+                    <div class="property-documents">
+                      <div class="d-flex justify-content-between pt-3">
+                        <div class="property-document-title">
+                          <i class="fa fa-tasks mr-1"></i>
+                          2800 Wayside 10.02.2024
+                        </div>
+                        <div class="property-document-link login-link">
+                          <a
+                            href="https://purplehousing.com/wp-content/uploads/2025/11/2800-Wayside-10.02.2024-5.pdf"
+                            target="_blank"
+                            >Download</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="contactAction mt-3 text-center">
+                <div class="actionButtonLink">
+                  <a href="{% url 'create_booking'%}">Schedule a Showing</a>
+                  <a href="{% url 'applying' %}">Apply Now</a>
+                </div>
+                <h2 style="text-align: center">
+                  Find us on Social<br />
+                  Media
+                </h2>
+
+                <div
+                  id="media"
+                  style="
+                    padding-top: 15px;
+                    display: flex;
+                    justify-content: center;
+                    gap: 38px;
+                    font-size: 22px;
+                  "
+                >
+                  <a
+                    href="https://www.facebook.com/purplehousing/"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <i class="fab fa-facebook"></i>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/purplehousing/"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a
+                    href="https://linkedin.com/company-beta/24795419/"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                  <a
+                    href="https://twitter.com/PurpleHousing"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </div>
+
+                <div class="socialIconProperty my-5 py-5" style="text-align: center">
+                  Purple Housing.
+                  <br />
+                  (817) 585-1354
+                  <br />
+                  <a href="{% url 'allProperties'%}">View all listings</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

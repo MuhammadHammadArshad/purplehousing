@@ -1,0 +1,371 @@
+{% extends "dashboard/layout.html" %}
+{% block content %}
+
+<div class="dashboardHome">
+  <div class="inner">
+    <h4 class="mb-4">Update Property</h4>
+
+    <form method="POST" action="{% url 'update_property' prop.id %}" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="container">
+
+        <!-- ========== DESCRIPTION & PRICE ========== -->
+        <div class="dashboard-content-block-wrap active p-4 bg-light rounded">
+          <h2 class="mb-3">Description</h2>
+
+          <div class="dashboard-content-block mb-4">
+            <div class="mb-3">
+              <label class="form-label">Property Title *</label>
+              <input type="text" class="form-control" name="prop_title" value="{{ prop.prop_title }}" />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Content</label>
+              <textarea class="form-control" name="prop_des" rows="10">{{ prop.prop_des }}</textarea>
+            </div>
+          </div>
+
+          <!-- Type & Status -->
+          <div class="row mb-4 g-3">
+            <div class="col-md-6">
+              <label class="form-label">Type</label>
+             <select class="form-select mb-3" name="category">
+    <option value="">Select</option>
+    <option value="Commercial" {% if prop.category == "Commercial" %}selected{% endif %}>Commercial</option>
+    <option value="Office" {% if prop.category == "Office" %}selected{% endif %}>Office</option>
+    <option value="Shop" {% if prop.category == "Shop" %}selected{% endif %}>Shop</option>
+    <option value="House" {% if prop.category == "House" %}selected{% endif %}>House</option>
+    <option value="Residential" {% if prop.category == "Residential" %}selected{% endif %}>Residential</option>
+    <option value="Apartment" {% if prop.category == "Apartment" %}selected{% endif %}>Apartment</option>
+    <option value="Condo" {% if prop.category == "Condo" %}selected{% endif %}>Condo</option>
+    <option value="Multi_Family_Home" {% if prop.category == "Multi_Family_Home" %}selected{% endif %}>Multi Family Home</option>
+    <option value="Single_Family_Home" {% if prop.category == "Single_Family_Home" %}selected{% endif %}>Single Family Home</option>
+    <option value="Studio" {% if prop.category == "Studio" %}selected{% endif %}>Studio</option>
+    <option value="Villa" {% if prop.category == "Villa" %}selected{% endif %}>Villa</option>
+    <option value="Town_House" {% if prop.category == "Town_House" %}selected{% endif %}>Town House</option>
+</select>
+
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Status</label>
+              <select class="form-select mb-3" name="purpose">
+    <option value="">Select</option>
+    <option value="For_Rent" {% if prop.purpose == "For_Rent" %}selected{% endif %}>For Rent</option>
+    <option value="For_Sale" {% if prop.purpose == "For_Sale" %}selected{% endif %}>For Sale</option>
+    <option value="Foreclosures" {% if prop.purpose == "Foreclosures" %}selected{% endif %}>Foreclosures</option>
+    <option value="New_Construction" {% if prop.purpose == "New_Construction" %}selected{% endif %}>New Construction</option>
+    <option value="New_Listing" {% if prop.purpose == "New_Listing" %}selected{% endif %}>New Listing</option>
+    <option value="Open_House" {% if prop.purpose == "Open_House" %}selected{% endif %}>Open House</option>
+    <option value="Reduced_Price" {% if prop.purpose == "Reduced_Price" %}selected{% endif %}>Reduced Price</option>
+    <option value="Resale" {% if prop.purpose == "Resale" %}selected{% endif %}>Resale</option>
+</select>
+
+            </div>
+          </div>
+
+          <h2 class="mb-3">Price</h2>
+          <div class="dashboard-content-block mb-4">
+            <div class="mb-3">
+              <label class="form-label">Sale or Rent Price *</label>
+              <input type="text" class="form-control" name="prop_price" value="{{ prop.prop_price }}" required />
+            </div>
+          </div>
+        </div>
+
+        <!-- ========== DETAILS ========== -->
+        <div class="dashboard-content-block-wrap active p-4 bg-light rounded">
+          <h2 class="mb-3">Details</h2>
+
+          <div class="dashboard-content-block">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Bedrooms</label>
+                <input type="number" class="form-control" name="prop_beds" value="{{ prop.prop_beds }}" min="0" max="500" />
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Bathrooms</label>
+                <input type="number" class="form-control" name="prop_baths" value="{{ prop.prop_baths }}" min="0" max="500" />
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Area Size *</label>
+                <input type="text" class="form-control" name="prop_size" value="{{ prop.prop_size }}" required />
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Year Built</label>
+                <input type="text" class="form-control" name="prop_year_built" value="{{ prop.prop_year_built }}" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========== FEATURES ========== -->
+        <div class="dashboard-content-block-wrap active p-4 bg-light rounded">
+          <h2 class="mb-3">Features</h2>
+
+          <div class="dashboard-content-block">
+            <div class="row g-3">
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Air_Conditioning"
+            {% if "Air_Conditioning" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Air Conditioning</label>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Alarm_Monitoring_Services"
+            {% if "Alarm_Monitoring_Services" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Alarm Monitoring Services</label>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Backyard"
+            {% if "Backyard" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Backyard</label>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Balcony"
+            {% if "Balcony" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Balcony</label>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Barbeque"
+            {% if "Barbeque" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Barbeque</label>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Car_Port"
+            {% if "Car_Port" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Car Port</label>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Central_A/C"
+            {% if "Central_A/C" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Central A/C</label>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Covered_Parking"
+            {% if "Covered_Parking" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Covered Parking</label>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Dryer"
+            {% if "Dryer" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Dryer</label>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Fireplace"
+            {% if "Fireplace" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Fireplace</label>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Furnished"
+            {% if "Furnished" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Furnished</label>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Garage"
+            {% if "Garage" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Garage</label>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Gated_Parking"
+            {% if "Gated_Parking" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Gated Parking</label>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Granite_Countertops"
+            {% if "Granite_Countertops" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Granite Countertops</label>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Gym"
+            {% if "Gym" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Gym</label>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-6">
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="prop_features[]" value="Laundry"
+            {% if "Laundry" in prop.prop_features %}checked{% endif %}>
+            <label class="form-check-label">Laundry</label>
+        </div>
+    </div>
+
+</div>
+
+
+          </div>
+        </div>
+
+        <!-- ========== LOCATION ========== -->
+        <div class="dashboard-content-block p-4 bg-light rounded">
+          <h2>Location</h2>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Address *</label>
+              <input type="text" class="form-control" name="property_map_address" value="{{ prop.property_map_address }}" required />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Country</label>
+              <input type="text" class="form-control" name="country" value="{{ prop.country }}" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">State / County</label>
+              <input type="text" class="form-control" name="administrative_area_level_1" value="{{ prop.administrative_area_level_1 }}" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">City</label>
+              <input type="text" class="form-control" name="locality" value="{{ prop.city }}" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Zip / Postal Code</label>
+              <input type="text" class="form-control" name="postal_code" value="{{ prop.zip_code }}" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ========== MAP ========== -->
+        <div class="dashboard-content-block p-4 bg-light rounded">
+          <h2>Map</h2>
+
+          <div class="row g-4">
+            <div class="col-md-6">
+              <label class="form-label">Latitude</label>
+              <input type="text" class="form-control" name="lat" value="{{ prop.lat }}" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Longitude</label>
+              <input type="text" class="form-control" name="lng" value="{{ prop.lng }}" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Street View</label>
+              <select name="prop_google_street_view" class="form-select">
+                <option value="hide" {% if prop.prop_google_street_view == 'hide' %}selected{% endif %}>Hide</option>
+                <option value="show" {% if prop.prop_google_street_view == 'show' %}selected{% endif %}>Show</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========== MEDIA ========== -->
+        <div class="dashboard-content-block p-4 bg-light rounded">
+          <h2>Property Images (Max 10)</h2>
+
+          <p class="fw-bold mb-2">Current Images:</p>
+
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            {% for img in prop.gallery_images %}
+            <img src="{{ MEDIA_URL }}{{ img }}" width="100" height="80" style="object-fit:cover;">
+            {% endfor %}
+          </div>
+
+          <input type="file" name="gallery_images" multiple accept="image/*" />
+        </div>
+
+        <!-- ========== ATTACHMENTS ========== -->
+        <div class="dashboard-content-block p-4 bg-light rounded">
+          <h2>Property Documents</h2>
+
+          <p class="fw-bold mb-2">Current Files:</p>
+
+          <ul>
+            {% for file in prop.attachments %}
+            <li>{{ file }}</li>
+            {% endfor %}
+          </ul>
+
+          <input type="file" name="attachments" multiple />
+        </div>
+
+        <!-- ========== SETTINGS ========== -->
+        <div class="dashboard-content-block p-4 bg-light rounded">
+          <h2>Property Settings</h2>
+
+          <div class="pb-3 mb-3 border-bottom">
+            <label class="form-label fw-semibold">Featured?</label>
+            <div class="d-flex gap-4 mt-2">
+              <label><input type="radio" name="prop_featured" value="1" {% if prop.featured %}checked{% endif %}> Yes</label>
+              <label><input type="radio" name="prop_featured" value="0" {% if not prop.featured %}checked{% endif %}> No</label>
+            </div>
+          </div>
+
+          <div class="pb-3 mb-3 border-bottom">
+            <label class="form-label fw-semibold">Login Required?</label>
+            <div class="d-flex gap-4 mt-2">
+              <label><input type="radio" name="login-required" value="1" {% if prop.login_required %}checked{% endif %}> Yes</label>
+              <label><input type="radio" name="login-required" value="0" {% if not prop.login_required %}checked{% endif %}> No</label>
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label">Disclaimer</label>
+            <textarea class="form-control" name="property_disclaimer" rows="3">{{ prop.disclaimer }}</textarea>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <a href="{% url 'dasboardIndex' %}" class="btn btn-outline-primary">Cancel</a>
+          <button type="submit" class="btn btn-primary">Update Property</button>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

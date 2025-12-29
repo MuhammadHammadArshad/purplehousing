@@ -1,0 +1,628 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Home{% endblock %}
+{% block content %}
+<!-- <h1>Home Page</h1>
+<p>Welcome to our website! This content is from home.html.</p> -->
+<!-- <div class="slick-slider">
+  <div><img src="{% static 'images/1.jpg' %}" alt="Slide 1"></div>
+  <div><img src="{% static 'images/2.jpg' %}" alt="Slide 2"></div>
+  <div><img src="{% static 'images/3.jpg' %}" alt="Slide 3"></div>
+</div> -->
+<div class="slider-head">
+  <div class="slick-slider">
+    <div class="slide-item">
+      <img src="{% static 'images/1.jpg' %}" alt="Slide 1" />
+      <div class="overlay"></div>
+      <div class="slide-text">
+        <h2>Beautiful Homes</h2>
+        <p>Your comfort, our priority!</p>
+      </div>
+    </div>
+
+    <div class="slide-item">
+      <img src="{% static 'images/2.jpg' %}" alt="Slide 2" />
+      <div class="overlay"></div>
+      <div class="slide-text">
+        <h2>Luxury Property</h2>
+        <p>Find your dream house</p>
+      </div>
+    </div>
+
+    <div class="slide-item">
+      <img src="{% static 'images/1.jpg' %}" alt="Slide 3" />
+      <div class="overlay"></div>
+      <div class="slide-text">
+        <h2>Best Locations</h2>
+        <p>We serve the top areas</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Advance Search -->
+<div
+  class="container p-2 d-none"
+  style="
+    position: relative;
+    bottom: 75px;
+    background-color: #f0f0f0;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  "
+>
+  <form
+    method="get"
+    autocomplete="off"
+    action="https://purplehousing.com/search-results/"
+  >
+    <div class="advanced-search-v1">
+      <div class="d-flex gap-2 flex-wrap mt-3">
+        <!-- Keyword -->
+        <div class="flex-grow-1">
+          <div
+            class="mb-3 position-relative propertyID d-flex align-items-center"
+          >
+            <i class="fa fa-search"></i>
+            <input
+              name="keyword"
+              type="text"
+              class="form-control rounded-1 border-0"
+              placeholder="Property ID"
+            />
+            <div id="auto_complete_ajax" class="auto-complete"></div>
+          </div>
+        </div>
+
+        <!-- Bedrooms -->
+        <div class="fields-width">
+          <div class="mb-3">
+            <select name="bedrooms" class="form-select rounded-1">
+              <option value="">Bedrooms</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option value="any">Any</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Bathrooms -->
+        <div class="fields-width">
+          <div class="mb-3">
+            <select name="bathrooms" class="form-select rounded-1">
+              <option value="">Bathrooms</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option value="any">Any</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Advanced Btn -->
+        <div>
+          <a
+            class="btn"
+            data-bs-toggle="collapse"
+            data-bs-target="#advanced-search-filters"
+          >
+            <i class="fa fa-gear me-1"></i> Advanced
+          </a>
+        </div>
+
+        <!-- Search Btn -->
+        <div>
+          <button type="submit" class="btn btn-search w-100 rounded-1">
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advanced Filters -->
+    <div id="advanced-search-filters" class="collapse mt-3">
+      <div class="advanced-search-filters search-v1-v2">
+        <div class="d-flex gap-2 flex-wrap">
+          <!-- Min Price -->
+          <div class="flex-search w-25">
+            <div class="mb-3">
+              <select name="min-price" class="form-select rounded-1">
+                <option value="">Min. Price</option>
+                <option value="any">Any</option>
+                <option value="1000">$1,000</option>
+                <option value="5000">$5,000</option>
+                <option value="10000">$10,000</option>
+                <option value="50000">$50,000</option>
+                <option value="100000">$100,000</option>
+                <option value="200000">$200,000</option>
+                <option value="300000">$300,000</option>
+                <option value="400000">$400,000</option>
+                <option value="500000">$500,000</option>
+                <option value="600000">$600,000</option>
+                <option value="700000">$700,000</option>
+                <option value="800000">$800,000</option>
+                <option value="900000">$900,000</option>
+                <option value="1000000">$1,000,000</option>
+                <option value="1500000">$1,500,000</option>
+                <option value="2000000">$2,000,000</option>
+                <option value="2500000">$2,500,000</option>
+                <option value="5000000">$5,000,000</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Rooms -->
+          <div class="flex-search w-25">
+            <div class="mb-3">
+              <select name="rooms" class="form-select rounded-1">
+                <option value="">Rooms</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option value="any">Any</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Property Show -->
+<!-- <section>
+  <div class="propertyShowWrapper">
+    <div class="inner">
+      <p class="m-0 title text-center">Our Featured Properties</p>
+      <div class="divider"></div>
+
+      <div class="container my-5">
+        <div class="row g-4">
+          
+          <div class="col-md-6">
+            <div class="featured-image position-relative">
+              <div class="contentSec">
+                <img
+                  src="{% static 'images/feature.png'%}"
+                  class="img-fluid w-25"
+                  alt="feature"
+                />
+                <p class="m-0">Available 08/01/2026</p>
+              </div>
+            </div>
+            <div class="slick-slider-carousel slider-1">
+              <div>
+                <img
+                  src="{% static 'images/1.jpg' %}"
+                  class="img-fluid"
+                  alt="Slide 1"
+                />
+              </div>
+              <div>
+                <img
+                  src="{% static 'images/2.jpg' %}"
+                  class="img-fluid"
+                  alt="Slide 2"
+                />
+              </div>
+              <div>
+                <img
+                  src="{% static 'images/3.jpg' %}"
+                  class="img-fluid"
+                  alt="Slide 3"
+                />
+              </div>
+            </div>
+            <div class="bottomSliderText position-relative">
+              <div
+                class="textArea d-flex justify-content-between align-items-center"
+              >
+                <div class="left">
+                  <p class="m-0 sliderTitle">3143 McCart Ave</p>
+                  <p class="m-0 sliderIcon">
+                    <i class="fa fa-bed me-2"></i>4<i
+                      class="fa fa-shower mx-2"
+                    ></i
+                    >4.5<i class="fas fa-ruler-combined mx-2"></i>2
+                  </p>
+                  <p class="m-0 sliderText">
+                    3312 South University Drive, Fort Worth, TX, USA
+                  </p>
+                </div>
+                <div class="right">
+                  <p class="m-0 sliderTitle">Rent</p>
+                  <p class="m-0 sliderTitle">$5,600</p>
+                  <p class="m-0 sliderIcon">
+                    <i class="fa fa-heart fs-5"></i
+                    ><i class="fa fa-plus fs-5 mx-3"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="sliderCTA d-flex align-items-center justify-content-between mt-4"
+            >
+              <button class="btn btn-details">Details</button>
+              <button class="btn btn-apply">Apply Now</button>
+            </div>
+          </div>
+
+         
+
+          <div class="col-md-6">
+            <div class="featured-image position-relative">
+              <div class="contentSec">
+                <img
+                  src="{% static 'images/feature.png'%}"
+                  class="img-fluid w-25"
+                  alt="feature"
+                />
+                <p class="m-0">Available 08/01/2026</p>
+              </div>
+            </div>
+            <div class="slick-slider-carousel slider-1">
+              <div>
+                <img
+                  src="{% static 'images/1.jpg' %}"
+                  class="img-fluid"
+                  alt="Slide 1"
+                />
+              </div>
+              <div>
+                <img
+                  src="{% static 'images/2.jpg' %}"
+                  class="img-fluid"
+                  alt="Slide 2"
+                />
+              </div>
+              <div>
+                <img
+                  src="{% static 'images/3.jpg' %}"
+                  class="img-fluid"
+                  alt="Slide 3"
+                />
+              </div>
+            </div>
+            <div class="bottomSliderText position-relative">
+              <div
+                class="textArea d-flex justify-content-between align-items-center"
+              >
+                <div class="left">
+                  <p class="m-0 sliderTitle">3143 McCart Ave</p>
+                  <p class="m-0 sliderIcon">
+                    <i class="fa fa-bed me-2"></i>4<i
+                      class="fa fa-shower mx-2"
+                    ></i
+                    >4.5<i class="fas fa-ruler-combined mx-2"></i>2
+                  </p>
+                  <p class="m-0 sliderText">
+                    3312 South University Drive, Fort Worth, TX, USA
+                  </p>
+                </div>
+                <div class="right">
+                  <p class="m-0 sliderTitle">Rent</p>
+                  <p class="m-0 sliderTitle">$5,600</p>
+                  <p class="m-0 sliderIcon">
+                    <i class="fa fa-heart fs-5"></i
+                    ><i class="fa fa-plus fs-5 mx-3"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="sliderCTA d-flex align-items-center justify-content-between mt-4"
+            >
+              <button class="btn btn-details">Details</button>
+              <button class="btn btn-apply">Apply Now</button>
+            </div>
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section>
+  <div class="propertyShowWrapper">
+    <div class="inner">
+      <p class="m-0 title text-center">Our Featured Properties</p>
+      <div class="divider"></div>
+
+      <div class="container my-5">
+        <div class="row g-4">
+          {% for property in properties %}
+          <div class="col-md-6">
+            <div class="featured-image position-relative">
+              <div class="contentSec">
+                {% if property.featured %}
+                <img src="{% static 'images/feature.png' %}" class="img-fluid w-25" alt="feature" />
+                {% endif %}
+                <p class="m-0">Available {{ property.prop_year_built }}</p>
+              </div>
+            </div>
+
+            <div class="slick-slider-carousel slider-1">
+              {% for image in property.gallery_images %}
+              <div>
+                <img src="{{ MEDIA_URL }}{{ image }}" class="img-fluid" alt="{{ property.prop_title }}">
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="bottomSliderText position-relative">
+              <div class="textArea d-flex justify-content-between align-items-center">
+                <div class="left">
+                  <p class="m-0 sliderTitle">{{ property.prop_title }}</p>
+                  <p class="m-0 sliderIcon">
+                    <i class="fa fa-bed me-2"></i>{{ property.prop_beds }}
+                    <i class="fa fa-shower mx-2"></i>{{ property.prop_baths }}
+                    <i class="fas fa-ruler-combined mx-2"></i>{{ property.prop_size }}
+                  </p>
+                  <p class="m-0 sliderText">
+                    {{ property.property_map_address }}, {{ property.city }}, {{ property.country }}
+                  </p>
+                </div>
+                <div class="right">
+                  <p class="m-0 sliderTitle">Rent/Sale</p>
+                  <p class="m-0 sliderTitle">${{ property.prop_price }}</p>
+                  <p class="m-0 sliderIcon">
+                    <i class="fa fa-heart fs-5"></i>
+                    <i class="fa fa-plus fs-5 mx-3"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="sliderCTA d-flex align-items-center justify-content-between mt-4">
+              
+              {% if property.id %}
+      <a href="{% url 'property_details' property.id %}" class="btn btn-details">Details</a>
+    {% endif %}
+              
+              
+              <a href="{% url 'applying'%}" class="btn btn-apply">Apply Now</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- About us info -->
+<div class="aboutHome">
+  <div class="container py-5">
+  <div class="row align-items-start">
+    <!-- LEFT COLUMN -->
+    <div class="col-md-7">
+      <h1 class="fw-bold aboutTitle">TCU Area Rentals | Homes For Rent Near TCU</h1>
+
+      <!-- Divider -->
+      <hr class="my-3 custom-hr" />
+
+      <p class="m-0 aboutPara">
+        Purple Housing was created to make finding off-campus housing easier for
+        TCU students. The creator of purple housing, a TCU student himself,
+        recognized that TCU students didn’t have an easy or efficient way to
+        find <strong>Off-Campus Housing</strong>. It either involved driving
+        around and calling off of rent signs or looking on Zillow and finding
+        out that the house was available now, not for the June-August lease
+        start dates that students start looking for as early as September.
+      </p>
+
+      <p class="m-0 aboutPara">
+        Purple Housing has the most options for
+        <em><strong>TCU Area Rental Properties</strong></em> because we work
+        with local landlords, property management companies, and apartments to
+        notify the students of their properties’ availability. We have helped
+        hundreds of TCU students find the perfect house and we look forward to
+        doing the same for you.
+      </p>
+
+      <p class="m-0 aboutPara">
+        Look through the available options in the PROPERTIES tab and see if
+        there are any you and your group would like to see. Our website has a
+        “Schedule a Showing” feature which allows you to schedule a time to see
+        the specified house you and your group would like to see. Feel free to
+        CONTACT US with any questions you may have.
+      </p>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col-md-5 text-center">
+      <img
+        src="https://purplehousing.com/wp-content/uploads/elementor/thumbs/Rectangle-15-qkxb0dqz1555h3lqctrtei1m2d6fdshmktl8uioduc.png"
+        alt="Rectangle 15"
+        class="img-fluid rounded"
+      />
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Blog section -->
+ <!-- <section>
+  <div class="homeBlog">
+    <div class="inner">
+       <p class="m-0 title text-center">Our Blog</p>
+      <div class="divider"></div>
+
+      <div class="container">
+
+        
+        <div class="d-flex justify-content-end mb-3">
+            <button class="btn btn-prev-carousal custom-prev me-2">Prev</button>
+            <button class="btn btn-next-carousal custom-next">Next</button>
+        </div>
+
+      
+        <div class="custom-slider">
+
+            <div class="blog-card position-relative">
+                <div class="blog-thumb">
+                    <img src="{% static 'images/1.jpg' %}" alt="">
+                </div>
+                <div class="blog-content">
+                    <div class="tags d-flex align-items-center">
+                      <span class="date"><i class="far fa-calendar me-2"></i> June 24, 2025</span>
+                    <span class="date ms-3"><i class="fa fa-tags me-2"></i> Fort Worth Rental</span>
+                    </div>
+                    <h4>Fort Worth Housing Properties: How to Find Affordable Options?</h4>
+                </div>
+            </div>
+
+            <div class="blog-card position-relative">
+                <div class="blog-thumb">
+                    <img src="{% static 'images/2.jpg' %}" alt="">
+                </div>
+                <div class="blog-content">
+                    <div class="tags d-flex align-items-center">
+                      <span class="date"><i class="far fa-calendar me-2"></i> June 24, 2025</span>
+                    <span class="date ms-3"><i class="fa fa-tags me-2"></i> Fort Worth Rental</span>
+                    </div>
+                    <h4>Fort Worth Housing Properties: How to Find Affordable Options?</h4>
+                </div>
+            </div>
+
+            <div class="blog-card position-relative">
+                <div class="blog-thumb">
+                    <img src="{% static 'images/3.jpg' %}" alt="">
+                </div>
+                <div class="blog-content">
+                    <div class="tags d-flex align-items-center">
+                      <span class="date"><i class="far fa-calendar me-2"></i> June 24, 2025</span>
+                    <span class="date ms-3"><i class="fa fa-tags me-2"></i> Fort Worth Rental</span>
+                    </div>
+                    <h4>Fort Worth Housing Properties: How to Find Affordable Options?</h4>
+                </div>
+            </div>
+
+            <div class="blog-card position-relative">
+                <div class="blog-thumb">
+                    <img src="{% static 'images/1.jpg' %}" alt="">
+                </div>
+                <div class="blog-content">
+                    <div class="tags d-flex align-items-center">
+                      <span class="date"><i class="far fa-calendar me-2"></i> June 24, 2025</span>
+                    <span class="date ms-3"><i class="fa fa-tags me-2"></i> Fort Worth Rental</span>
+                    </div>
+                    <h4>Fort Worth Housing Properties: How to Find Affordable Options?</h4>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+  </div>
+ </section> -->
+
+<section>
+  <div class="homeBlog">
+    <div class="inner">
+      <p class="m-0 title text-center">Our Blog</p>
+      <div class="divider"></div>
+
+      <div class="container">
+
+        <!-- top buttons -->
+        <div class="d-flex justify-content-end mb-3">
+          <button class="btn btn-prev-carousal custom-prev me-2">Prev</button>
+          <button class="btn btn-next-carousal custom-next">Next</button>
+        </div>
+
+        <!-- slider -->
+        <div class="custom-slider">
+          {% for blog in blogs %}
+          <div class="blog-card position-relative">
+            <div class="blog-thumb">
+              {% if blog.image %}
+                <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+              {% else %}
+                <img src="{% static 'images/default-blog.jpg' %}" alt="{{ blog.title }}">
+              {% endif %}
+            </div>
+            <div class="blog-content">
+              <!-- <div class="tags d-flex align-items-center">
+                <span class="date">
+                  <i class="far fa-calendar me-2"></i> {{ blog.created_at|date:"F d, Y" }}
+                </span>
+                {% if blog.category %}
+                <span class="date ms-3">
+                  <i class="fa fa-tags me-2"></i> {{ blog.category }}
+                </span>
+                {% endif %}
+              </div> -->
+              <h4>{{ blog.title|truncatechars:20 }}</h4>
+              <p>{{ blog.description|striptags|truncatechars:20 }}</p>
+            </div>
+          </div>
+          {% empty %}
+          <p>No blogs available.</p>
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+ <!-- Home Map -->
+  <section>
+    <div class="homeMap">
+      <div class="inner">
+        <p class="m-0 title text-center pt-5">Map & Directions</p>
+        <div class="divider"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+<section class="my-5">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 p-0">
+        <!-- Responsive Map Container -->
+        <div class="ratio ratio-16x9">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3357.6207953143626!2d-97.36231812531004!3d32.69612788811716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e721b1d6eecd1%3A0x2d8950e5548895bf!2s2949%20S%20Hills%20Ave%2C%20Fort%20Worth%2C%20TX%2076109%2C%20USA!5e0!3m2!1sen!2s!4v1763989640023!5m2!1sen!2s" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Property Location Map">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

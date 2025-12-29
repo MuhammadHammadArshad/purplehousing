@@ -1,0 +1,165 @@
+{% extends "dashboard/layout.html" %}
+{% block content %}
+
+<div class="dashboardHome">
+  <div class="inner">
+
+    <div class="top d-flex align-items-center justify-content-between">
+      <p class="m-0 title">Application Details</p>
+      <a href="{% url 'applyingListDashboard' %}" class="btn btn-secondary btn-sm">Back</a>
+    </div>
+
+    <hr>
+
+    <!-- ================= STEP 1 ================= -->
+    <h5 class="mb-3">Step 1: Property Info</h5>
+    <table class="table table-bordered">
+      <tr>
+        <th>Property ID</th>
+        <td>{{ app.property_id }}</td>
+      </tr>
+      <tr>
+        <th>Move In Date</th>
+        <td>{{ app.move_in_date }}</td>
+      </tr>
+      <tr>
+        <th>Applicant Type</th>
+        <td>{{ app.applicant_type|title }}</td>
+      </tr>
+    </table>
+
+    <!-- ================= STEP 2 ================= -->
+    <h5 class="mb-3 mt-4">Step 2: Contact Info</h5>
+    <table class="table table-bordered">
+      <tr>
+        <th>Name</th>
+        <td>{{ app.first_name }} {{ app.last_name }}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{ app.email }}</td>
+      </tr>
+      <tr>
+        <th>Phone</th>
+        <td>{{ app.phone }}</td>
+      </tr>
+      <tr>
+        <th>Hear About</th>
+        <td>{{ app.hear_about }}</td>
+      </tr>
+    </table>
+
+    <!-- ================= STEP 3 ================= -->
+    <h5 class="mb-3 mt-4">Step 3: Previous Residence</h5>
+    <table class="table table-bordered">
+      <tr><th>Address</th><td>{{ app.address1 }} {{ app.address2 }}</td></tr>
+      <tr><th>City</th><td>{{ app.city }}</td></tr>
+      <tr><th>State</th><td>{{ app.state }}</td></tr>
+      <tr><th>Zipcode</th><td>{{ app.zipcode }}</td></tr>
+      <tr><th>Reside From</th><td>{{ app.reside_from_month }}/{{ app.reside_from_year }}</td></tr>
+      <tr><th>Monthly Rent</th><td>{{ app.monthly_rent }}</td></tr>
+      <tr><th>Mortgage</th><td>{{ app.monthly_mortgage }}</td></tr>
+      <tr><th>Landlord</th><td>{{ app.landlord_name }}</td></tr>
+      <tr><th>Landlord Phone</th><td>{{ app.landlord_phone }}</td></tr>
+      <tr><th>Reason For Leaving</th><td>{{ app.reason_for_leaving }}</td></tr>
+    </table>
+
+    <!-- ================= STEP 4 ================= -->
+    <h5 class="mb-3 mt-4">Step 4: Housemates</h5>
+    <table class="table table-bordered">
+      <tr><th>Other Adults</th><td>{{ app.other_adults|yesno:"Yes,No" }}</td></tr>
+      <tr><th>Adult Count</th><td>{{ app.adult_count }}</td></tr>
+
+      {% if app.adult_names %}
+      <tr>
+        <th>Adult Names</th>
+        <td>
+          <ul>
+            {% for name in app.adult_names %}
+              <li>{{ name }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      {% endif %}
+
+      <tr><th>Dependents Under 18</th><td>{{ app.dependents_under_18|yesno:"Yes,No" }}</td></tr>
+      <tr><th>Dependent Name</th><td>{{ app.dependent_first_name }} {{ app.dependent_last_name }}</td></tr>
+      <tr><th>Relation</th><td>{{ app.dependent_relation }}</td></tr>
+      <tr><th>DOB</th><td>{{ app.dependent_dob }}</td></tr>
+
+      <tr><th>Has Pets</th><td>{{ app.has_pets|yesno:"Yes,No" }}</td></tr>
+      <tr><th>Pet Count</th><td>{{ app.pet_count }}</td></tr>
+
+      {% if app.pet_details %}
+      <tr>
+        <th>Pet Details</th>
+        <td>
+          <ul>
+            {% for pet in app.pet_details %}
+              <li>{{ pet.name }} - {{ pet.breed }} ({{ pet.age }} yrs)</li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      {% endif %}
+    </table>
+
+    <!-- ================= STEP 5 ================= -->
+    <h5 class="mb-3 mt-4">Step 5: Personal Info</h5>
+    <table class="table table-bordered">
+      <tr><th>DOB</th><td>{{ app.dob }}</td></tr>
+      <tr><th>SSN</th><td>{{ app.ssn }}</td></tr>
+      <tr><th>License</th><td>{{ app.license_number }}</td></tr>
+      <tr><th>Emergency Contact</th><td>{{ app.emergency_name }} ({{ app.emergency_phone }})</td></tr>
+    </table>
+
+    <!-- ================= STEP 6 ================= -->
+    <h5 class="mb-3 mt-4">Step 6: Employment</h5>
+    <table class="table table-bordered">
+      <tr><th>Employer</th><td>{{ app.employer_name }}</td></tr>
+      <tr><th>Position</th><td>{{ app.position }}</td></tr>
+      <tr><th>Monthly Salary</th><td>{{ app.monthly_salary }}</td></tr>
+      <tr><th>Years Worked</th><td>{{ app.years_worked }}</td></tr>
+    </table>
+
+    <!-- ================= STEP 7 ================= -->
+    <h5 class="mb-3 mt-4">Step 7: Background Questions</h5>
+    <table class="table table-bordered">
+      <tr><th>Eviction History</th><td>{{ app.eviction_history }}</td></tr>
+      <tr><th>Criminal History</th><td>{{ app.criminal_history }}</td></tr>
+      <tr><th>Income 3x Rent</th><td>{{ app.income_3x_rent }}</td></tr>
+    </table>
+
+    <!-- ================= STEP 8 ================= -->
+    <h5 class="mb-3 mt-4">Step 8: Photo ID</h5>
+    {% if app.photo_id %}
+      <a href="{{ app.photo_id.url }}" target="_blank">
+        <img src="{{ app.photo_id.url }}" style="width:150px;border:1px solid #ccc;">
+      </a>
+    {% else %}
+      <p>No document uploaded</p>
+    {% endif %}
+
+    <!-- ================= STEP 9 ================= -->
+    <h5 class="mb-3 mt-4">Billing Info</h5>
+    <table class="table table-bordered">
+      <tr><th>Name</th><td>{{ app.billing_first_name }} {{ app.billing_last_name }}</td></tr>
+      <tr><th>Address</th><td>{{ app.billing_address1 }}</td></tr>
+      <tr><th>City</th><td>{{ app.billing_city }}</td></tr>
+      <tr><th>State</th><td>{{ app.billing_state }}</td></tr>
+      <tr><th>Zip</th><td>{{ app.billing_zip }}</td></tr>
+    </table>
+
+    <!-- ================= STEP 10 ================= -->
+    <h5 class="mb-3 mt-4">Authorization</h5>
+    <table class="table table-bordered">
+      <tr><th>Agreed to Terms</th><td>{{ app.agree_terms|yesno:"Yes,No" }}</td></tr>
+      <tr><th>Authorized Name</th><td>{{ app.authorized_name }}</td></tr>
+      <tr><th>Submitted At</th><td>{{ app.submitted_at }}</td></tr>
+    </table>
+
+  </div>
+</div>
+
+{% endblock %}

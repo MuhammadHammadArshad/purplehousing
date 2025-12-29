@@ -1,0 +1,195 @@
+{% extends 'base.html' %} {% block title %}Contact{% endblock %} 
+{% block content %}
+<div class="contactPage">
+  <div class="inner">
+    <div class="top">
+      <p class="text-center title">Contact Us</p>
+
+      <div class="bredcrumbs">
+        <p class="m-0">
+          Home <span><i class="fas fa-angle-right fs-5 mx-2"></i></span> Contact
+          Us
+        </p>
+        <p class="m-0 bredPara mt-3">
+          Find the best Houses for rent near Tcu with Purple Housing.
+        </p>
+      </div>
+    </div>
+
+    <div class="content position-relative">
+      <div class="container-fluid px-5">
+        <div class="row align-items-start">
+          <div class="col-12 col-md-8 mb-4">
+            <h3 class="contactHeading">Request a Call Back</h3>
+            <div class="dividerContact"></div>
+
+            <form method="post">
+              {% csrf_token %}
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    placeholder="Enter Your Name"
+                    required
+                  />
+                </div>
+
+                <div class="col-md-6">
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Enter Your Email"
+                    required
+                  />
+                </div>
+
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    name="work_phone"
+                    class="form-control"
+                    placeholder="Enter Your Phone No."
+                    required
+                  />
+                </div>
+
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    name="subject"
+                    class="form-control"
+                    placeholder="Enter Your Subject"
+                    required
+                  />
+                </div>
+
+                <div class="col-12">
+                  <textarea
+                    name="message"
+                    rows="4"
+                    class="form-control"
+                    placeholder="Message"
+                  ></textarea>
+                </div>
+
+                <div class="col-12 d-flex justify-content-center">
+                  <button type="submit" class="btn btn-contactSubmit">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <img
+              src="https://purplehousing.com/wp-content/uploads/elementor/thumbs/Rectangle-15-qkxb0dqzj4g1ljymbhtzziwjgkfgj51rzdmqluunby.png"
+              alt="Image"
+              class="img-fluid rounded"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid p-5 pb-0">
+        <div class="row mt-5">
+          
+          <div class="col-12 col-md-6">
+            <h3 class="contactHeading">Contact Details:</h3>
+            <div class="dividerContact"></div>
+
+            <div class="d-flex align-items-center my-4">
+              <i class="fa fa-phone"></i>
+              <p class="mb-0 ms-3">
+                <a href="tel:+18175851354" class="text-dark fw-semibold socialLink"
+                  >(817) 585-1354</a
+                >
+              </p>
+            </div>
+
+            <div class="d-flex align-items-center my-4">
+              <i class="fa fa-envelope"></i>
+              <p class="mb-0 ms-3">
+                <a
+                  href="mailto:admin@purplehousing.com"
+                  class="text-dark fw-semibold socialLink"
+                  >admin@purplehousing.com</a
+                >
+              </p>
+            </div>
+
+            <div class="d-flex align-items-center my-4">
+              <i class="fa fa-map-marker"></i>
+              <p class="mb-0 ms-3 fw-semibold text-dark socialLink">
+                3124 Sandage Ave Fort Worth, TX 76109
+              </p>
+            </div>
+
+            <!-- Social Icons -->
+            <div class="d-flex mt-4 gap-1">
+              <a href="https://www.facebook.com/purplehousing" target="_blank">
+                <img
+                  src="https://purplehousing.com/wp-content/uploads/2022/12/Rectangle-71.svg"
+                  width="45"
+                />
+              </a>
+              <a
+                href="https://www.instagram.com/purplehousing/"
+                target="_blank"
+              >
+                <img
+                  src="https://purplehousing.com/wp-content/uploads/2022/12/Rectangle-74.svg"
+                  width="45"
+                />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/jonathan-rothchild-17556822"
+                target="_blank"
+              >
+                <img
+                  src="https://purplehousing.com/wp-content/uploads/2022/12/Rectangle-73.svg"
+                  width="45"
+                />
+              </a>
+              <a href="https://twitter.com/PurpleHousing" target="_blank">
+                <img
+                  src="https://purplehousing.com/wp-content/uploads/2025/01/Twitter-Purple-Housing.svg"
+                  width="45"
+                />
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Google Map + Get Direction -->
+          <div class="col-12 col-md-6">
+            <div class="ratio ratio-16x9 mb-3">
+              <iframe
+                src="https://maps.google.com/maps?q=3124%20Sandage%20Ave%20Fort%20Worth%2C%20TX%2076109&z=10&output=embed"
+                allowfullscreen
+                loading="lazy"
+                class="rounded"
+              >
+              </iframe>
+            </div>
+
+            <div class="text-center text-md-end d-flex justify-content-between align-items-center pt-3">
+                <p class="m-0 directionCode"><strong style="color:black;">Address:</strong> 3124 Sandage Ave Fort Worth, TX 76109 </p>
+              <a
+                href="https://www.google.com/maps/dir//3124+Sandage+Ave+Fort+Worth,+TX+76109"
+                class="btn btn-getDirection"
+                target="_blank"
+              >
+                Get Direction
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
